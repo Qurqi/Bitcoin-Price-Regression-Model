@@ -10,7 +10,7 @@ from keras.layers import GRU, Dropout, SimpleRNN , Dense
 from keras.models import Sequential
 import keras_tuner
 
-data = pd.read_csv('/home/jobbinbobbin/Code/Python/Data_Files/BTCUSD_1h_Binance_GMean1.csv')
+data = pd.read_csv('/Binance_1m_gmean.csv')
 print(data.head())
 #Remove Columns: Quote asset volume, Taker buy base asset volume, Taker buy quote asset volume, Ignore
 kdata = data.drop(labels=["Unnamed: 0"],axis = 1)
