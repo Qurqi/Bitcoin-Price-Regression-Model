@@ -1,4 +1,4 @@
-Model Discussion:
+## **Model Discussion:**
 
 I used TensorFlow’s keras library for programming simplicity. Keras provides lots of
 built in options for ML beginners, while still allowing for lots of customization when
@@ -6,7 +6,7 @@ needed. Also, the documentation is quite user friendly. As for data, I used a 10
 bitcoin price dataset from Kaggle. I have linked it rather than uploading it to this repo
 in the interest of preserving Github's server storage capacity.
 
-Data Discussion:
+## **Data Discussion:**
 
 I converted my minutely data to weekly data for improved efficiency of training
 during the prototyping phase. Then, reverted to hourly data after confirming that the
@@ -29,8 +29,8 @@ realized that an option called “return_sequences” had to be enabled for all 
 gru layer in order to process my data sequences properly. The last layer doesn’t require
 a sequence because it is a deep layer.
 
-Error/Loss Function Discussion:
-
+## **Error/Loss Function Discussion:
+**
 I chose my error function to maximize outlier sensitivity. MSE and MSLE seemed to
 be my best options after some research(see [1],[2]). Root mean squared logarithmic
 error would have been ideal but after attempting to implement a custom version into
@@ -45,8 +45,8 @@ implemented this by changing the normalization window from (0,1) to (1,3). I cho
 (1,2), and potentially provide better temporal pattern granularity. This change fixed my
 NaN problem, allowing us to reduce model error by training more.
 
-GRU Hyperparameter discussion:
-
+## **GRU Hyperparameter discussion:
+**
 Originally, my model consisted of three 50-node GRU layers, each with a corresponding
 20% dropout layer, connected to a deep layer. These parameters were an arbitrary
 choice. I discovered that keras has a built-in hyperparameter optimizer called
@@ -72,7 +72,7 @@ nodes, dropout of 0.34, and learning rate of approximately 1.1E-4 was optimal fo
 prediction.
 
 
-References:
+## **References**:
 
 [1] Jadon, A., Patil, A., & Jadon, S. (2022, November 5). A comprehensive survey of
 regression based loss functions for time series forecasting. arXiv.org.
