@@ -63,7 +63,7 @@ parameter space was:
 ● 0.2 < Dropout value < 0.6, with a step of 0.05
 
 I used BayesianOptimization to do a search of my defined parameter space because
-it is a more efficient and “smart” algorithm than grid search and other alternatives [3].
+it is considered a more efficient and “smart” algorithm than grid search and other alternatives.
 I began with a broad search in the range defined above and ran the optimizer
 multiple times, recording the parameter values of the highest scoring models each time.
 I used the recorded data to narrow my search space, and reduce my training time
@@ -81,9 +81,3 @@ https://arxiv.org/abs/2211.02989
 [2] Kapronczay, M. (2023, April 3). Mean squared error (MSE) vs. mean squared
 logarithmic error (MSLE). Mean Squared Error (MSE) vs. Mean Squared Logarithmic
 Error (MSLE): A Guide. https://builtin.com/data-science/msle-vs-mse
-
-[3] Siripurapu, A., & Berman, N. (2024, January 17). Cryptocurrencies, digital dollars,
-and the future of money. Council on Foreign Relations.
-https://www.cfr.org/backgrounder/crypto-question-bitcoin-digital-dollars-and-future-mone
-y#:~:text=Different%20currencies%20have%20different%20appeals,transaction%20or%
-20charge%20a%20fee.
