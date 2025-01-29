@@ -3,7 +3,7 @@
 I used TensorFlow’s keras library for programming simplicity. Keras provides lots of
 built in options for ML beginners, while still allowing for lots of customization when
 needed. Also, the documentation is quite user friendly. As for data, I used a 10 year 
-bitcoin price dataset from Kaggle. I have linked it rather than uploading it to this repo
+bitcoin price dataset from Kaggle. I have linked it[1] rather than uploading it to this repo
 in the interest of preserving Github's server storage capacity.
 
 ## **Data Discussion:**
@@ -32,7 +32,7 @@ a sequence because it is a deep layer.
 ## **Error/Loss Function Discussion:**
 
 I chose my error function to maximize outlier sensitivity. MSE and MSLE seemed to
-be my best options after some research(see [1],[2]). Root mean squared logarithmic
+be my best options after some research(see [2],[3]). Root mean squared logarithmic
 error would have been ideal but after attempting to implement a custom version into
 keras, I decided to stick with MSLE for programming simplicity. MSLE has better
 outlier detection than MSE, making the model more robust in theory. This was proven in
@@ -74,10 +74,13 @@ prediction.
 
 ## **References**:
 
-[1] Jadon, A., Patil, A., & Jadon, S. (2022, November 5). A comprehensive survey of
+[1] Bukhari, I. (2024, November 22). Bitcoin BTC, 7 exchanges, 1m full historical data.
+Kaggle. https://www.kaggle.com/datasets/imranbukhari/comprehensive-btcusd-1m-data
+
+[2] Jadon, A., Patil, A., & Jadon, S. (2022, November 5). A comprehensive survey of
 regression based loss functions for time series forecasting. arXiv.org.
 https://arxiv.org/abs/2211.02989
 
-[2] Kapronczay, M. (2023, April 3). Mean squared error (MSE) vs. mean squared
+[3] Kapronczay, M. (2023, April 3). Mean squared error (MSE) vs. mean squared
 logarithmic error (MSLE). Mean Squared Error (MSE) vs. Mean Squared Logarithmic
 Error (MSLE): A Guide. https://builtin.com/data-science/msle-vs-mse
