@@ -1,4 +1,5 @@
 Model Discussion:
+
 I used TensorFlow’s keras library for programming simplicity. Keras provides lots of
 built in options for ML beginners, while still allowing for lots of customization when
 needed. Also, the documentation is quite user friendly.
