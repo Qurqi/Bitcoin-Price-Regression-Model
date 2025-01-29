@@ -1,3 +1,4 @@
+Model Discussion:
 I used TensorFlow’s keras library for programming simplicity. Keras provides lots of
 built in options for ML beginners, while still allowing for lots of customization when
 needed. Also, the documentation is quite user friendly.
@@ -26,7 +27,7 @@ realized that an option called “return_sequences” had to be enabled for all 
 gru layer in order to process my data sequences properly. The last layer doesn’t require
 a sequence because it is a deep layer.
 
-GRU Error Function DIscussion:
+GRU Error Function Discussion:
 
 I chose my error function to maximize outlier sensitivity. MSE and MSLE seemed to
 be my best options after some research(see [10],[11]). Root mean squared logarithmic
