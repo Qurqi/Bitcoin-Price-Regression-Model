@@ -3,11 +3,12 @@ built in options for ML beginners, while still allowing for lots of customizatio
 needed. Also, the documentation is quite user friendly.
 
 GRU Data Discussion:
-I converted my minutely data to Iekly data for improved efficiency of training
-during the prototyping phase. Then, reverted to hmyly data after confirming that the
+
+I converted my minutely data to weekly data for improved efficiency of training
+during the prototyping phase. Then, reverted to hourly data after confirming that the
 model architecture ran without errors.
 Originally I used an arithmetic mean to aggregate the data. I use the geometric
-mean a lot in Circuit analysis, so I researched what the difference betIen geometric
+mean a lot in Circuit analysis, so I researched what the difference between geometric
 mean and arithmetic mean is. It turns out that geometric mean is better for dependent
 time series. Swapping to geometric mean decreased the model's error by about 0.5 E-1.
 I had to get rid of zeros to evaluate the geometric mean properly. I tried replacing
@@ -18,20 +19,21 @@ accounting for zero values. The prediction of volume was far off, but it didn’
 affect the models accuracy. In hindsight, I may have been able to drop it. Without
 testing to confirm this, there is really no saying what would happen though.
 For the train and test data I had to create time sequences for the model to process.
-I chose to use 7 hmy windows to predict the 8th hmy in a sequence. This choice was
-somewhat arbitrary but it worked Ill. I are keen to experiment with this parameter in
+I chose to use 7 hour windows to predict the 8th hour in a sequence. This choice was
+somewhat arbitrary but it worked well. I are keen to experiment with this parameter in
 the future. Initially windowing presented model layer I/O dimension errors, but I
 realized that an option called “return_sequences” had to be enabled for all but the last
 gru layer in order to process my data sequences properly. The last layer doesn’t require
 a sequence because it is a deep layer.
 
 GRU Error Function DIscussion:
+
 I chose my error function to maximize outlier sensitivity. MSE and MSLE seemed to
 be my best options after some research(see [10],[11]). Root mean squared logarithmic
 error would have been ideal but after attempting to implement a custom version into
 keras, I decided to stick with MSLE for programming simplicity. MSLE has better
 outlier detection than MSE, making the model more robust in theory. This was proven in
-practice as Ill. I began seeing NaN in my error function as I began to do more
+practice as well. I began seeing NaN in my error function as I began to do more
 fitting. This did not happen with MSE. After some research, I realized that the
 logarithm part of my MSLE error function was getting a zero value. Apparently this has
 to do with ReLu returning zero. The solution suggested was to add a bias. I
@@ -41,23 +43,27 @@ implemented this by changing the normalization window from (0,1) to (1,3). I cho
 NaN problem, allowing us to reduce model error by training more.
 
 GRU Hyperparameter discussion:
+
 Originally, my model consisted of three 50-node GRU layers, each with a corresponding
-20% dropout layer, connected to a deep layer. These parameters Ire an arbitrary
+20% dropout layer, connected to a deep layer. These parameters were an arbitrary
 choice. I discovered that keras has a built-in hyperparameter optimizer called
-keras-tuner [13]. I read the documentation on it and built a tuner that refined my layer
+keras-tuner. I read the documentation on it and built a tuner that refined my layer
 count, node count, dropout percentage, and adam optimizer learning rate. my
 parameter space was:
 
 ● 90 < Num nodes < 200, with a step of 1
+
 ● 1E-4 < learning rate < 1E-2, no step parameter required
+
 ● 1 < Num layers < 4, with a step of 1
+
 ● 0.2 < Dropout value < 0.6, with a step of 0.05
 
 I used BayesianOptimization to do a search of my defined parameter space because
-it is a more efficient and “smart” algorithm than grid search and other alternatives [14].
+it is a more efficient and “smart” algorithm than grid search and other alternatives.
 I began with a broad search in the range defined above and ran the optimizer
 multiple times, recording the parameter values of the highest scoring models each time.
 I used the recorded data to narrow my search space, and reduce my training time
-from 1 hmy, 21 minutes to 21 minutes. According to the tuner results 1 layer, 137
-nodes, dropout of 0.34, and learning rate of approximately 1.1E-4 was optimal for hmyly
+from 1 hour, 21 minutes to 21 minutes. According to the tuner results 1 layer, 137
+nodes, dropout of 0.34, and learning rate of approximately 1.1E-4 was optimal for hourly
 prediction.
